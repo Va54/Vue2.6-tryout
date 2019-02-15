@@ -1,7 +1,11 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld>
+       <template v-slot:[slotForHeader]>Hello</template>
+       <template v-slot:footer="{ nameInfo }">
+         Data from child component {{nameInfo.lastName}}
+       </template>
+    </HelloWorld>
   </div>
 </template>
 
@@ -11,6 +15,11 @@ import HelloWorld from '@/components/HelloWorld.vue';
 
 export default {
   name: 'home',
+  data() {
+    return {
+      slotForHeader: 'header',
+    };
+  },
   components: {
     HelloWorld,
   },
